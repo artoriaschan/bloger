@@ -1,0 +1,38 @@
+@charset "utf-8";
+.layout {
+    &-header{
+        background-color: #ffffff;
+        border-bottom: 1px solid #eeeeee;
+        &__content{
+            margin: 0 auto;
+            width: 1200px;
+            .logo{
+                float: left;
+            }
+            .menu{
+                float: left;
+                border-bottom: none;
+                margin-left: 60px;
+                .ant-menu-item{
+                    height: 64px;
+                    line-height: 64px;
+                }
+            }
+            .right{
+                float: right;
+                .login-info{
+                    line-height: 40px;
+                    height: 64px;
+                    padding: 12px 0;
+                }
+            }
+        }
+    }
+    &-content{
+        min-height: 650px;
+        background-color: #ffffff;
+    }
+    &-footer {
+        background-color: #ffffff;
+    }
+}
