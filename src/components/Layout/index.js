@@ -98,7 +98,7 @@ export default class ViewLayout extends Component {
             </div>
           </Header>
           <Content className="layout-content">
-            Content
+            {this.props.children}
           </Content>
           <Footer className="layout-footer">
             1bitcode ©{new Date().getFullYear()} Created by ArtoriasChan
