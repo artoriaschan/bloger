@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Modal, Button, Form, Input} from 'antd';
 import { Rule, Notification } from '../../utils'
-
+import { register } from '../../apis/interfaces'
 const FormItem = Form.Item;
 const formItemLayout = {
     wrapperCol: {span: 20, offset: 2},
@@ -41,6 +41,7 @@ class RegistrationForm extends Component {
                     }
                 })
                 this.props.submit(values).then((val) => {
+                    console.log(val)
                     this.setState(() => {
                         return {
                             loading: false
@@ -120,11 +121,13 @@ export default class Register extends Component {
     }
     handleOk = (values) => {
         return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                resolve()
+            register(values).then((res) => {
+                resolve(res.data)
                 this.handleClose()
-                Notification.openNotificationWithIcon('success', '注册成功', '请点击登录按钮登录')
-            },1000)
+                let code = res.data.code
+                let message = res.data.message
+                Notification.openNotificationWithIcon(code === 0 ? 'success' : 'error', message , message)
+            })
         })
     }
     handleClose = () => {

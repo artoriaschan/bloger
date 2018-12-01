@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Modal, Button, Form, Input} from 'antd'
 import { Notification } from '../../utils'
+import { login } from '../../apis/interfaces'
 
 const FormItem = Form.Item;
 const formItemLayout = {
@@ -24,6 +25,7 @@ class LoginForm extends Component {
                     }
                 })
                 this.props.submit(values).then((val) => {
+                    console.log(val)
                     this.setState(() => {
                         return {
                             loading: false
@@ -77,11 +79,13 @@ export default class Login extends Component {
     
     handleOK = (values) => {
         return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                resolve()
+            login(values).then((res) => {
+                resolve(res.data)
                 this.handleClose()
-                Notification.openNotificationWithIcon('success', '登陆成功', '恭喜登陆成功')
-            },1000)
+                let code = res.data.code
+                let message = res.data.message
+                Notification.openNotificationWithIcon(code === 0 ? 'success': 'error', message, message)
+            })
         })
     }
 
