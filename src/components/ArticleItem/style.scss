@@ -1,0 +1,49 @@
+@charset "utf-8";
+.article {
+    .article-item {
+        max-height: 100px;
+        margin: 0;
+        box-sizing: content-box;
+        &_left {
+            float: left;
+            width: 730px;
+            &__title {
+                color: #333;
+                font-size: 18px;
+                font-weight: 700;
+                margin-bottom: 5px;
+                >a:link { 
+                    color: #333; 
+                    text-decoration: none; 
+                } 
+                >a:visited { 
+                    color: #333; 
+                    text-decoration: none; 
+                } 
+                >a:hover { 
+                    color: #333; 
+                    text-decoration: none; 
+                }
+            }
+            &__content {
+                min-height: 50px;
+                font-size: 13px;
+                line-height: 24px;
+                color: #666;
+                margin: 0;
+            }
+            .article-status {
+                line-height: 18px;
+                color: #b4b4b4;
+                font-size: 12px;
+                >span {
+                    margin-right: 10px;
+                }
+            }
+        }
+        &_right {
+            float: left;
+        }
+    }
+}
+

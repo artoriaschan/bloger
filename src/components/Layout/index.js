@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
-import { Layout, Avatar, Menu, Dropdown, Icon, Button } from 'antd';
+import { Layout, Avatar, Menu, Dropdown, Icon, Button, Divider } from 'antd'
+import { NavLink } from 'react-router-dom'
+
 import Register from '../Register'
 import Login from '../Login'
+import UserSlider from '../UserSlider'
 import "./style.scss";
 
-const { Header, Footer, Content } = Layout;
+const { Header, Footer, Content, Sider } = Layout;
 
 const loginMenu = (
   <Menu>
@@ -21,7 +24,8 @@ export default class ViewLayout extends Component {
       isLogin: false,
       username: "Artorias",
       registerVisible: false,
-      loginVisible: false
+      loginVisible: false,
+      current: "index"  // 当前选定的标签页
     }
   }
   handleLogin = () => {
@@ -38,7 +42,12 @@ export default class ViewLayout extends Component {
       }
     })
   }
-  
+  handleClick = (e) => {
+    this.setState({
+      current: e.key,
+    });
+
+  }
   render() {
     return (
       <div className="layout">
@@ -47,23 +56,35 @@ export default class ViewLayout extends Component {
             <div className="layout-header__content">
               <Avatar className="logo" shape="square" size={63} src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"></Avatar>
               <Menu
+                selectedKeys={[this.state.current]}
                 mode="horizontal"
                 className="menu"
+                onClick={this.handleClick}
               >
                 <Menu.Item key="index">
-                  <Icon type="home" />首页
+                  <NavLink to="/">
+                    <Icon type="home" />首页
+                  </NavLink>
                 </Menu.Item>
                 <Menu.Item key="hotter">
-                  <Icon type="fire" />热门
+                  <NavLink to="/hotter">
+                    <Icon type="fire" />热门
+                  </NavLink>
                 </Menu.Item>
                 <Menu.Item key="timeline">
-                  <Icon type="star" />历程
+                  <NavLink to="/timeline">
+                    <Icon type="star" />历程
+                  </NavLink>
                 </Menu.Item>
-                <Menu.Item key="commonts">
-                  <Icon type="message" />留言
+                <Menu.Item key="messages">
+                  <NavLink to="/messages">
+                    <Icon type="message" />留言
+                  </NavLink>
                 </Menu.Item>
                 <Menu.Item key="about">
-                  <Icon type="robot" />关于
+                  <NavLink to="/about">
+                    <Icon type="robot" />关于
+                  </NavLink>
                 </Menu.Item>
               </Menu>
               <div className="right">
@@ -97,9 +118,15 @@ export default class ViewLayout extends Component {
               </div>
             </div>
           </Header>
-          <Content className="layout-content">
-            {this.props.children}
-          </Content>
+          <Layout className="layout-content">
+            <Content>
+              {this.props.children}
+            </Content>
+            <Divider type="vertical" style={{height: "auto"}}/>
+            <Sider width="320" style={{backgroundColor: "#ffffff",paddingBottom: "30px"}}>
+              <UserSlider></UserSlider>
+            </Sider>
+          </Layout>
           <Footer className="layout-footer">
             1bitcode ©{new Date().getFullYear()} Created by ArtoriasChan
           </Footer>

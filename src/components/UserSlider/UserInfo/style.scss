@@ -1,0 +1,14 @@
+@charset "utf-8";
+.user-info {
+    width: 100%;
+    min-height: 300px;
+    text-align: center;
+    &_username {
+        line-height: 64px;
+        font-size: 32px;
+        font-weight: 700;
+    }
+    &_description {
+
+    }
+}
