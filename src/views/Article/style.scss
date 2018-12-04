@@ -49,6 +49,17 @@
             }
         }
     }
+    .like-btn{
+        color: #f5222d;
+        text-align: center;
+        padding: 20px 0;
+        .ant-btn {
+            color: #f5222d;
+        }
+        .ant-btn:hover {
+            border-color: #f5222d;
+        }
+    }
     .article-comments {
         
     }

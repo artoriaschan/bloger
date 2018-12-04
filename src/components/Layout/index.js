@@ -101,8 +101,8 @@ class ViewLayout extends Component {
                 </Dropdown>
                 ) : (
                   <div className="login-btns">
-                    <Button type="primary" onClick={this.handleLogin} style={{marginRight: '10px'}}>登录</Button>
-                    <Button onClick={this.handleRegister}>注册</Button>
+                    <Button type="primary" onClick={this.handleLogin} style={{marginRight: '10px'}} icon="login">登 录</Button>
+                    <Button onClick={this.handleRegister} icon="logout">注 册</Button>
                     <Register visible={this.state.registerVisible} changeVisible={(val) => {
                       this.setState(() => {
                         return {
@@ -123,12 +123,12 @@ class ViewLayout extends Component {
             </div>
           </Header>
           <Layout className="layout-content">
-            <Content>
+            <Content style={{paddingRight: "10px"}}>
               {this.props.children}
             </Content>
             <Divider type="vertical" style={{height: "auto"}}/>
             {
-              (/^\/article/.test(this.props.location.pathname)) ? ("") : (<UserSlider></UserSlider>)
+              ((/^\/article/.test(this.props.location.pathname)) || (/^\/about/.test(this.props.location.pathname))) ? ("") : (<UserSlider></UserSlider>)
             }
           </Layout>
           <Footer className="layout-footer">
