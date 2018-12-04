@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
 import { Layout, Avatar, Menu, Dropdown, Icon, Button, Divider } from 'antd'
-import { NavLink } from 'react-router-dom'
+import { NavLink, withRouter } from 'react-router-dom'
 
 import Register from '../Register'
 import Login from '../Login'
 import UserSlider from '../UserSlider'
+
 import "./style.scss";
 
-const { Header, Footer, Content, Sider } = Layout;
+const { Header, Footer, Content } = Layout;
 
 const loginMenu = (
   <Menu>
@@ -17,7 +18,7 @@ const loginMenu = (
   </Menu>
 )
 
-export default class ViewLayout extends Component {
+class ViewLayout extends Component {
   constructor(props){
     super(props)
     this.state = {
@@ -48,11 +49,14 @@ export default class ViewLayout extends Component {
     });
 
   }
+  componentWillMount() {
+    console.log(this.props)
+  }
   render() {
     return (
       <div className="layout">
         <Layout>
-          <Header className="layout-header">
+          <Header className="layout-header" style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
             <div className="layout-header__content">
               <Avatar className="logo" shape="square" size={63} src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"></Avatar>
               <Menu
@@ -123,9 +127,9 @@ export default class ViewLayout extends Component {
               {this.props.children}
             </Content>
             <Divider type="vertical" style={{height: "auto"}}/>
-            <Sider width="320" style={{backgroundColor: "#ffffff",paddingBottom: "30px"}}>
-              <UserSlider></UserSlider>
-            </Sider>
+            {
+              (/^\/article/.test(this.props.location.pathname)) ? ("") : (<UserSlider></UserSlider>)
+            }
           </Layout>
           <Footer className="layout-footer">
             1bitcode ©{new Date().getFullYear()} Created by ArtoriasChan
@@ -135,3 +139,5 @@ export default class ViewLayout extends Component {
     )
   }
 }
+
+export default withRouter(ViewLayout)
