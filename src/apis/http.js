@@ -8,7 +8,7 @@ var http = axios.create({
     // process.env.NODE_ENV === 'production' ? config.onlineHost : config.mockHost,
   timeout: 4000,
   changeOrigin: true,
-  withCredentials: process.env.NODE_ENV === 'production' ? true : false
+  withCredentials: true
 });
 // //返回状态判断(添加响应拦截器)
 // http.interceptors.response.use(

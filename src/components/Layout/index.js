@@ -5,7 +5,6 @@ import { NavLink, withRouter } from 'react-router-dom'
 import Register from '../Register'
 import Login from '../Login'
 import UserSlider from '../UserSlider'
-
 import "./style.scss";
 
 const { Header, Footer, Content } = Layout;

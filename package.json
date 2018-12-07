@@ -1,5 +1,5 @@
 {
-  "name": "bloger",
+  "name": "blogger",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -126,6 +126,10 @@
   "babel": {
     "presets": [
       "react-app"
+    ],
+    "plugins": [
+        ["import", { "libraryName": "antd", "libraryDirectory": "es", "style": "css" }]
     ]
-  }
+  },
+  "homepage": "http://localhost:8088/"
 }
