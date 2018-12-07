@@ -4,8 +4,8 @@ import axios from 'axios';
 //   onlineHost: '//www.1bitcode.xyz'
 // };
 var http = axios.create({
-//   baseURL:
-//     process.env.NODE_ENV === 'production' ? config.onlineHost : config.mockHost,
+  baseURL: "http://localhost:8088",
+    // process.env.NODE_ENV === 'production' ? config.onlineHost : config.mockHost,
   timeout: 4000,
   changeOrigin: true,
   withCredentials: process.env.NODE_ENV === 'production' ? true : false

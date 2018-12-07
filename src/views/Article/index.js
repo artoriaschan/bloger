@@ -87,12 +87,12 @@ export default class Article extends Component {
                 <div className="like-btn">
                     <Button icon="heart" >喜欢</Button>
                 </div>
-                <Divider>文章评论</Divider>
+                {/* <Divider>文章评论</Divider>
                 <CommentEditor></CommentEditor>
                 <div className="article-comments">
                     <Divider orientation="left">全部评论</Divider>
                     <CommentList></CommentList>
-                </div>
+                </div> */}
             </article>
         )
     }

@@ -84,7 +84,7 @@ export default class Login extends Component {
                 this.handleClose()
                 let code = res.data.code
                 let message = res.data.message
-                Notification.openNotificationWithIcon(code === 0 ? 'success': 'error', message, message)
+                Notification.openNotificationWithIcon(code === 1 ? 'success': 'error', message, message)
             })
         })
     }
