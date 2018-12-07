@@ -75,7 +75,7 @@ class ViewLayout extends Component {
                     <Icon type="fire" />热门
                   </NavLink>
                 </Menu.Item>
-                <Menu.Item key="timeline">
+                {/* <Menu.Item key="timeline">
                   <NavLink to="/timeline">
                     <Icon type="star" />历程
                   </NavLink>
@@ -84,7 +84,7 @@ class ViewLayout extends Component {
                   <NavLink to="/messages">
                     <Icon type="message" />留言
                   </NavLink>
-                </Menu.Item>
+                </Menu.Item> */}
                 <Menu.Item key="about">
                   <NavLink to="/about">
                     <Icon type="robot" />关于

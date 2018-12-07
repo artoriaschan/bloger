@@ -20,24 +20,24 @@ let config = [
             loading: () => <div />
         })
     },
-    {
-        name: '/timeline',
-        path: '/timeline',
-        exact: true,
-        component: Loadable({
-            loader: () => import('../views/MyTimeline/index.js'),
-            loading: () => <div />
-        })
-    },
-    {
-        name: '/messages',
-        path: '/messages',
-        exact: true,
-        component: Loadable({
-            loader: () => import('../views/Messages/index.js'),
-            loading: () => <div />
-        })
-    },
+    // {
+    //     name: '/timeline',
+    //     path: '/timeline',
+    //     exact: true,
+    //     component: Loadable({
+    //         loader: () => import('../views/MyTimeline/index.js'),
+    //         loading: () => <div />
+    //     })
+    // },
+    // {
+    //     name: '/messages',
+    //     path: '/messages',
+    //     exact: true,
+    //     component: Loadable({
+    //         loader: () => import('../views/Messages/index.js'),
+    //         loading: () => <div />
+    //     })
+    // },
     {
         name: '/about',
         path: '/about',
