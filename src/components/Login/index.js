@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { Modal, Button, Form, Input} from 'antd'
-import { Notification } from '../../utils'
+import { Notification, Cookie } from '../../utils'
 import { login } from '../../apis/interfaces'
+import {observer, inject} from 'mobx-react'
 
 const FormItem = Form.Item;
 const formItemLayout = {
@@ -68,7 +69,8 @@ class LoginForm extends Component {
 
 const WrapperdLoginForm = Form.create()(LoginForm);
 
-export default class Login extends Component {
+@inject('userStore') 
+class Login extends Component {
     constructor(props){
         super(props)
         this.state = {}
@@ -81,10 +83,17 @@ export default class Login extends Component {
         return new Promise((resolve, reject) => {
             login(values).then((res) => {
                 resolve(res.data)
+                const {userStore} = this.props
+                let {code, message, data} = res.data
+                if (code === 1) {
+                    Notification.openNotificationWithIcon('success', message, message)
+                    userStore.changeLoginStatue(true)
+                    userStore.changeUserInfo(data)
+                }else{
+                    Notification.openNotificationWithIcon('error', message, message)
+                    userStore.changeLoginStatue(false)
+                }
                 this.handleClose()
-                let code = res.data.code
-                let message = res.data.message
-                Notification.openNotificationWithIcon(code === 1 ? 'success': 'error', message, message)
             })
         })
     }
@@ -107,3 +116,4 @@ export default class Login extends Component {
         )
     }
 }
+export default Login

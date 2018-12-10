@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import { Layout, Avatar, Menu, Dropdown, Icon, Button, Divider } from 'antd'
 import { NavLink, withRouter } from 'react-router-dom'
+import {observer, inject} from 'mobx-react'
 
 import Register from '../Register'
 import Login from '../Login'
 import UserSlider from '../UserSlider'
+import { getCurrentUser } from '../../apis/interfaces'
 import "./style.scss";
-
 const { Header, Footer, Content } = Layout;
 
 const loginMenu = (
@@ -17,11 +18,12 @@ const loginMenu = (
   </Menu>
 )
 
+@inject('userStore') 
+@observer
 class ViewLayout extends Component {
   constructor(props){
     super(props)
     this.state = {
-      isLogin: false,
       username: "Artorias",
       registerVisible: false,
       loginVisible: false,
@@ -48,10 +50,18 @@ class ViewLayout extends Component {
     });
 
   }
-  componentWillMount() {
-    console.log(this.props)
+  componentDidMount() {
+    getCurrentUser().then((res) => {
+      const {code, data} = res.data
+      const {userStore} = this.props
+      if(code === 1) {
+        userStore.changeUserInfo(data)
+        userStore.changeLoginStatue(true)
+      }
+    })
   }
   render() {
+    const { userStore: {loginStatus, userInfo} } = this.props
     return (
       <div className="layout">
         <Layout>
@@ -91,11 +101,11 @@ class ViewLayout extends Component {
                 </Menu.Item>
               </Menu>
               <div className="right">
-                {this.state.isLogin ? (
+                {loginStatus ? (
                 <Dropdown overlay={loginMenu}>
                   <div className="login-info">
                     <Avatar className="logo" shape="square" size="large" src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"></Avatar>
-                    <span style={{marginLeft:'5px'}}>{this.state.username}</span>
+                    <span style={{marginLeft:'5px'}}>{userInfo.username}</span>
                   </div>
                 </Dropdown>
                 ) : (

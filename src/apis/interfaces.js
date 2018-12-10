@@ -14,3 +14,6 @@ export const register = props => {
         }
     );
 };
+export const getCurrentUser = () => {
+    return http.get('/api/current/user');
+};
