@@ -69,7 +69,7 @@ class LoginForm extends Component {
 
 const WrapperdLoginForm = Form.create()(LoginForm);
 
-@inject('userStore') 
+@inject('userStore')
 class Login extends Component {
     constructor(props){
         super(props)

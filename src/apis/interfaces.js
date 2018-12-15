@@ -17,3 +17,6 @@ export const register = props => {
 export const getCurrentUser = () => {
     return http.get('/api/current/user');
 };
+export const getArticleDetail = (articleId) => {
+    return http.get('/api/article/' + articleId);
+};
